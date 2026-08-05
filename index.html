@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAVIRA SMK - Form Data Siswa & Kirim WA Admin</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="bg-glow-container">
+        <div class="glow-ball glow-1"></div>
+        <div class="glow-ball glow-2"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="brand-badge">
+                <div class="wa-icon-brand">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div class="brand-info">
+                    <h1>KAVIRA <span>SMK</span></h1>
+                    <p class="tagline"><i class="fa-solid fa-paper-plane"></i> Kartu Aktivitas dan Verifikasi Siswa</p>
+                </div>
+            </div>
+            <div class="header-status">
+                <span class="status-indicator"><i class="fa-solid fa-headset"></i> Admin: 088210222618</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container Layout -->
+    <main class="main-container">
+        <div class="form-card-container">
+            
+            <!-- Panel Header -->
+            <div class="panel-header text-center">
+                <div class="badge-pill-header">
+                    <i class="fa-solid fa-shield-halved"></i> KAVIRA SMK DIGITAL
+                </div>
+                <h2>Pengisian Data Siswa KAVIRA</h2>
+                <p>Isi data siswa di bawah ini untuk dikirimkan secara otomatis ke WhatsApp Admin (<strong>088210222618</strong>)</p>
+            </div>
+
+            <!-- Notice / Banner Denda 30K & Laminating -->
+            <div class="notice-warning-box">
+                <div class="notice-head">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>PERATURAN & ATURAN PENTING KAVIRA</span>
+                </div>
+                <p class="notice-desc">
+                    Kami <strong>TIDAK BERTANGGUNG JAWAB UNTUK KEDUA KALINYA</strong> jika kartu hilang atau rusak kembali. 
+                    Akan dikenakan <strong>DENDA SEBESAR Rp 30.000 (30K)</strong>. 
+                    Mohon untuk selalu dijaga kartunya dengan cara <strong>DILAMINATING</strong> dan disimpan baik-baik!
+                </p>
+            </div>
+
+            <!-- Form Data Siswa -->
+            <form id="kaviraWAForm" onsubmit="event.preventDefault();">
+                
+                <!-- Input Nama Lengkap -->
+                <div class="input-group">
+                    <label for="inputNama">
+                        <i class="fa-solid fa-user"></i> Nama Lengkap Siswa <span class="required">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="text" id="inputNama" placeholder="Contoh: Muhammad Rizky Pratama" required autocomplete="off">
+                        <i class="fa-solid fa-pen input-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Input Kelas & Jurusan Row -->
+                <div class="form-row">
+                    <!-- Input Kelas -->
+                    <div class="input-group">
+                        <label for="inputKelas">
+                            <i class="fa-solid fa-graduation-cap"></i> Kelas <span class="required">*</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="inputKelas" placeholder="Contoh: XI RPL 2" required autocomplete="off">
+                            <i class="fa-solid fa-school input-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Input Jurusan -->
+                    <div class="input-group">
+                        <label for="inputJurusan">
+                            <i class="fa-solid fa-screwdriver-wrench"></i> Jurusan <span class="required">*</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="inputJurusan" placeholder="Contoh: Rekayasa Perangkat Lunak" required autocomplete="off">
+                            <i class="fa-solid fa-laptop-code input-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nomor WA Admin -->
+                <div class="input-group">
+                    <label for="inputNoWA">
+                        <i class="fa-brands fa-whatsapp"></i> Nomor WhatsApp Admin Tujuan
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="text" id="inputNoWA" value="088210222618" required readonly style="background: rgba(37, 211, 102, 0.1); border-color: rgba(37, 211, 102, 0.4); font-weight: 700; color: #25d366;">
+                        <i class="fa-solid fa-lock input-icon" style="color: #25d366;"></i>
+                    </div>
+                    <span class="help-text"><i class="fa-solid fa-circle-info"></i> Pesan otomatis ditujukan ke Nomor Admin: <strong>088210222618</strong></span>
+                </div>
+
+                <!-- Preview Format Pesan WA -->
+                <div class="wa-preview-box">
+                    <div class="wa-preview-head">
+                        <i class="fa-brands fa-whatsapp"></i> Pratinjau Pesan WA ke Admin (088210222618):
+                    </div>
+                    <pre class="wa-preview-content" id="waPreviewText"></pre>
+                </div>
+
+                <!-- Action Submit Button -->
+                <div class="action-btn-container">
+                    <button type="submit" class="btn-send-wa" id="btnSendWA">
+                        <i class="fa-brands fa-whatsapp"></i> Kirim Data ke WA Admin (088210222618)
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </main>
+
+    <!-- Footer Section with winessa.online -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3><i class="fa-solid fa-id-card"></i> KAVIRA SMK DIGITAL</h3>
+                <p>Platform Pengisian & Pengiriman Data Kartu Aktivitas dan Verifikasi Siswa ke Admin WA 088210222618</p>
+            </div>
+            
+            <div class="footer-domain-highlight">
+                <p class="domain-label">Dikembangkan & Dikelola Oleh:</p>
+                <a href="https://winessa.online" target="_blank" rel="noopener noreferrer" class="domain-link">
+                    <i class="fa-solid fa-globe"></i> winessa.online
+                </a>
+            </div>
+
+            <div class="footer-copyright">
+                <p>&copy; 2026 KAVIRA SMK. Powered by <a href="https://winessa.online" target="_blank">winessa.online</a>. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
