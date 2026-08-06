@@ -148,8 +148,38 @@
                             <option value="Kartu Rusak">⚠️ Kartu Rusak (Denda 30K)</option>
                             <option value="Kartu Hilang" selected>❌ Kartu Hilang (Denda 30K)</option>
                             <option value="Lupa Membawa Kartu">🎒 Lupa Membawa Kartu</option>
+                            <option value="Kesalahan Data Siswa">📝 Pengajuan Kesalahan Data Siswa</option>
                         </select>
                         <i class="fa-solid fa-chevron-down input-icon"></i>
+                    </div>
+                </div>
+
+                <!-- SUB-FORM PENGALIAN KESALAHAN DATA SISWA & ISI DATA BARU -->
+                <div class="sub-section-kesalahan" id="groupKesalahanData" style="display: none;">
+                    <div class="sub-section-title">
+                        <i class="fa-solid fa-file-pen"></i> Form Pengajuan Kesalahan & Isi Data Baru
+                    </div>
+                    
+                    <!-- Keterangan Kesalahan Data Siswa -->
+                    <div class="input-group">
+                        <label for="inputKeteranganKesalahan">
+                            <i class="fa-solid fa-circle-question"></i> Keterangan Kesalahan Data Siswa <span class="required">*</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="inputKeteranganKesalahan" placeholder="Tuliskan bagian yang salah (Contoh: Ejaan nama salah di kartu lama)">
+                            <i class="fa-solid fa-pen-to-square input-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Isi Data Baru yang Benar -->
+                    <div class="input-group">
+                        <label for="inputDataBaru">
+                            <i class="fa-solid fa-sparkles"></i> Isi Data Baru (Data yang Benar) <span class="required">*</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="inputDataBaru" placeholder="Isikan data baru yang benar (Contoh: Nama: Assyifa Ramadhani / Kelas: XI PPLG 1)">
+                            <i class="fa-solid fa-check-double input-icon"></i>
+                        </div>
                     </div>
                 </div>
 
