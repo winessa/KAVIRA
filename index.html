@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="header-status">
-                <span class="status-indicator"><i class="fa-solid fa-headset"></i> Admin: 088210222618</span>
+                <span class="status-indicator"><i class="fa-solid fa-clock"></i> Ambil: Sesudah Dzuhur</span>
             </div>
         </div>
     </header>
@@ -46,7 +46,7 @@
                     <i class="fa-solid fa-shield-halved"></i> KAVIRA SMK DIGITAL
                 </div>
                 <h2>Pengisian Data Siswa KAVIRA</h2>
-                <p>Isi data siswa di bawah ini untuk dikirimkan secara otomatis ke WhatsApp Admin (<strong>088210222618</strong>)</p>
+                <p>Isi data siswa, kelas (X, XI, XII), jurusan (MPLB, AKL, TKR, TPM, TKJT, PPLG) & kategori laporan</p>
             </div>
 
             <!-- Notice / Banner Denda 30K & Laminating -->
@@ -62,6 +62,20 @@
                 </p>
             </div>
 
+            <!-- Banner Info Pengambilan Sesudah Dzuhur -->
+            <div class="notice-dzuhur-box">
+                <div class="dzuhur-icon">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="dzuhur-text">
+                    <strong>JADWAL PENGAMBILAN KARTU:</strong>
+                    <span>Kartu dapat diambil / diproses <strong>SESUDAH DZUHUR</strong>.</span>
+                </div>
+                <button type="button" class="btn-info-popup" id="btnTriggerPopup">
+                    <i class="fa-solid fa-circle-info"></i> Info Pop-up
+                </button>
+            </div>
+
             <!-- Form Data Siswa -->
             <form id="kaviraWAForm" onsubmit="event.preventDefault();">
                 
@@ -71,33 +85,71 @@
                         <i class="fa-solid fa-user"></i> Nama Lengkap Siswa <span class="required">*</span>
                     </label>
                     <div class="input-wrapper">
-                        <input type="text" id="inputNama" placeholder="Contoh: Muhammad Rizky Pratama" required autocomplete="off">
+                        <input type="text" id="inputNama" placeholder="Contoh: Assyifa Ramadhani" required autocomplete="off">
                         <i class="fa-solid fa-pen input-icon"></i>
                     </div>
                 </div>
 
-                <!-- Input Kelas & Jurusan Row -->
+                <!-- Input Tingkat Kelas & Jurusan Row -->
                 <div class="form-row">
-                    <!-- Input Kelas -->
+                    <!-- Pilihan Tingkat Kelas (X, XI, XII) -->
                     <div class="input-group">
-                        <label for="inputKelas">
-                            <i class="fa-solid fa-graduation-cap"></i> Kelas <span class="required">*</span>
+                        <label for="selectTingkatKelas">
+                            <i class="fa-solid fa-graduation-cap"></i> Tingkat Kelas <span class="required">*</span>
                         </label>
                         <div class="input-wrapper">
-                            <input type="text" id="inputKelas" placeholder="Contoh: XI RPL 2" required autocomplete="off">
-                            <i class="fa-solid fa-school input-icon"></i>
+                            <select id="selectTingkatKelas" required>
+                                <option value="X">Kelas X (Sepuluh)</option>
+                                <option value="XI" selected>Kelas XI (Sebelas)</option>
+                                <option value="XII">Kelas XII (Dua Belas)</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down input-icon"></i>
                         </div>
                     </div>
 
-                    <!-- Input Jurusan -->
+                    <!-- Pilihan Jurusan (MPLB, AKL, TKR, TPM, TKJT, PPLG) -->
                     <div class="input-group">
-                        <label for="inputJurusan">
-                            <i class="fa-solid fa-screwdriver-wrench"></i> Jurusan <span class="required">*</span>
+                        <label for="selectJurusan">
+                            <i class="fa-solid fa-screwdriver-wrench"></i> Jurusan / Keahlian <span class="required">*</span>
                         </label>
                         <div class="input-wrapper">
-                            <input type="text" id="inputJurusan" placeholder="Contoh: Rekayasa Perangkat Lunak" required autocomplete="off">
-                            <i class="fa-solid fa-laptop-code input-icon"></i>
+                            <select id="selectJurusan" required>
+                                <option value="MPLB">MPLB - Manajemen Perkantoran & Layanan Bisnis</option>
+                                <option value="AKL">AKL - Akuntansi & Keuangan Lembaga</option>
+                                <option value="TKR">TKR - Teknik Kendaraan Ringan</option>
+                                <option value="TPM">TPM - Teknik Pemesinan</option>
+                                <option value="TKJT">TKJT - Teknik Komputer Jaringan & Telekomunikasi</option>
+                                <option value="PPLG" selected>PPLG - Pengembangan Perangkat Lunak & Gim</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down input-icon"></i>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Input Sub-Kelas / Nomor Rombel (Opsional) -->
+                <div class="input-group">
+                    <label for="inputRombel">
+                        <i class="fa-solid fa-layer-group"></i> Nomor Kelas / Rombel (Opsional)
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="text" id="inputRombel" placeholder="Contoh: 1, 2, atau A, B (Hasil: XI PPLG 1)">
+                        <i class="fa-solid fa-list-ol input-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Kategori Laporan Kartu -->
+                <div class="input-group">
+                    <label for="selectKategori">
+                        <i class="fa-solid fa-list-check"></i> Kategori Laporan Kartu <span class="required">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <select id="selectKategori" required>
+                            <option value="Belum Mengambil Kartu">📭 Belum Mengambil Kartu</option>
+                            <option value="Kartu Rusak">⚠️ Kartu Rusak (Denda 30K)</option>
+                            <option value="Kartu Hilang" selected>❌ Kartu Hilang (Denda 30K)</option>
+                            <option value="Lupa Membawa Kartu">🎒 Lupa Membawa Kartu</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down input-icon"></i>
                     </div>
                 </div>
 
@@ -131,6 +183,33 @@
 
         </div>
     </main>
+
+    <!-- POP-UP MODAL KETERANGAN SESUDAH DZUHUR -->
+    <div class="modal-backdrop" id="modalDzuhur">
+        <div class="modal-container">
+            <div class="modal-icon-header">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <h3 class="modal-title">Jadwal Pengambilan Kartu</h3>
+            <div class="modal-body-content">
+                <p class="modal-highlight-text">
+                    🕒 <strong>PENGAMBILAN KARTU KAVIRA DILAKUKAN SESUDAH DZUHUR</strong>
+                </p>
+                <p class="modal-subtext">
+                    Mohon untuk mencatat jadwal pengambilan kartu ini. Setelah mengirimkan data melalui WhatsApp, Anda dapat mengambil kartu di ruang admin/piket sekolah setelah waktu Dzuhur.
+                </p>
+                <div class="modal-denda-reminder">
+                    <i class="fa-solid fa-triangle-exclamation"></i> 
+                    <span>Penggantian kartu rusak/hilang dikenakan <strong>Denda Rp 30.000 (30K)</strong> & wajib <strong>DILAMINATING</strong>!</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-modal-close" id="btnCloseModal">
+                    <i class="fa-solid fa-check"></i> Saya Mengerti & Paham
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer Section with winessa.online -->
     <footer class="app-footer">
