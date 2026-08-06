@@ -1,5 +1,6 @@
 /* ==========================================================================
-   KAVIRA SMK - FORM DATA SISWA & OTOMATIS KIRIM WA
+   KAVIRA SMK - FORM DATA SISWA & OTOMATIS KIRIM WA ADMIN 088210222618
+   With Sub-Section Keterangan Kesalahan & Isi Data Baru
    Author: winessa.online
    ========================================================================== */
 
@@ -15,6 +16,7 @@
     --wa-dark-green: #128c7e;
     --accent-blue: #00d2ff;
     --accent-warning: #ff2a5f;
+    --accent-amber: #ffab00;
 
     --radius-sm: 10px;
     --radius-md: 16px;
@@ -136,9 +138,9 @@ body {
 }
 
 .status-indicator {
-    background: rgba(37, 211, 102, 0.15);
-    color: var(--wa-green);
-    border: 1px solid rgba(37, 211, 102, 0.3);
+    background: rgba(255, 171, 0, 0.15);
+    color: var(--accent-amber);
+    border: 1px solid rgba(255, 171, 0, 0.3);
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -210,7 +212,7 @@ body {
     border: 2px solid rgba(255, 42, 95, 0.5);
     border-radius: var(--radius-md);
     padding: 1.25rem 1.5rem;
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.25rem;
     box-shadow: 0 10px 25px rgba(255, 42, 95, 0.15);
 }
 
@@ -235,6 +237,94 @@ body {
     background: rgba(255, 42, 95, 0.3);
     padding: 1px 6px;
     border-radius: 4px;
+}
+
+/* Notice Box Dzuhur */
+.notice-dzuhur-box {
+    background: linear-gradient(135deg, rgba(255, 171, 0, 0.15) 0%, rgba(13, 22, 42, 0.95) 100%);
+    border: 1.5px solid rgba(255, 171, 0, 0.4);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dzuhur-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    background: rgba(255, 171, 0, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-amber);
+    font-size: 1.2rem;
+}
+
+.dzuhur-text {
+    flex: 1;
+    font-size: 0.85rem;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.dzuhur-text strong {
+    color: var(--accent-amber);
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-info-popup {
+    background: rgba(255, 171, 0, 0.2);
+    color: var(--accent-amber);
+    border: 1px solid rgba(255, 171, 0, 0.4);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.btn-info-popup:hover {
+    background: var(--accent-amber);
+    color: #000000;
+}
+
+/* Sub-Section Kesalahan Data Siswa & Isi Data Baru */
+.sub-section-kesalahan {
+    background: rgba(0, 210, 255, 0.06);
+    border: 1.5px dashed var(--accent-blue);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    animation: fadeInSection 0.3s ease;
+}
+
+@keyframes fadeInSection {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.sub-section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: var(--accent-blue);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px stroke rgba(0, 210, 255, 0.2);
+    padding-bottom: 6px;
 }
 
 /* Input Fields styling */
@@ -265,7 +355,7 @@ body {
     align-items: center;
 }
 
-.input-wrapper input {
+.input-wrapper input, .input-wrapper select {
     width: 100%;
     background: rgba(7, 12, 24, 0.9);
     border: 1px solid rgba(0, 210, 255, 0.25);
@@ -278,7 +368,18 @@ body {
     transition: var(--transition-smooth);
 }
 
-.input-wrapper input:focus {
+.input-wrapper select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.input-wrapper select option {
+    background: #091738;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.input-wrapper input:focus, .input-wrapper select:focus {
     border-color: var(--wa-green);
     box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
     background: rgba(7, 12, 24, 0.98);
@@ -364,6 +465,132 @@ body {
 .btn-send-wa:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+    filter: brightness(1.1);
+}
+
+/* POP-UP MODAL STYLING */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(4, 8, 18, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-container {
+    background: linear-gradient(135deg, #091738 0%, #060e24 100%);
+    border: 2px solid var(--accent-amber);
+    border-radius: var(--radius-lg);
+    padding: 2.2rem;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 171, 0, 0.3);
+    transform: scale(0.85) translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-backdrop.active .modal-container {
+    transform: scale(1) translateY(0);
+}
+
+.modal-icon-header {
+    width: 64px;
+    height: 64px;
+    background: rgba(255, 171, 0, 0.2);
+    border: 2px solid var(--accent-amber);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-amber);
+    font-size: 2rem;
+    margin: 0 auto 1.2rem;
+    box-shadow: 0 0 20px rgba(255, 171, 0, 0.4);
+}
+
+.modal-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.modal-highlight-text {
+    background: rgba(255, 171, 0, 0.15);
+    border: 1px solid rgba(255, 171, 0, 0.4);
+    color: var(--accent-amber);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.92rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.modal-subtext {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+}
+
+.modal-denda-reminder {
+    background: rgba(255, 42, 95, 0.12);
+    border: 1px dashed var(--accent-warning);
+    color: #ff99b3;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.modal-denda-reminder i {
+    color: var(--accent-warning);
+    font-size: 1rem;
+}
+
+.btn-modal-close {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent-amber), #ff8800);
+    color: #000000;
+    border: none;
+    padding: 14px;
+    border-radius: var(--radius-md);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(255, 171, 0, 0.4);
+}
+
+.btn-modal-close:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 171, 0, 0.6);
     filter: brightness(1.1);
 }
 
@@ -462,5 +689,9 @@ body {
     .btn-send-wa {
         font-size: 0.95rem;
         padding: 14px;
+    }
+    .notice-dzuhur-box {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
